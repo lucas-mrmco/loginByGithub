@@ -4,7 +4,9 @@ import { createClient } from '@supabase/supabase-js'
 import { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/SupabaseAuthClient'
 </script>
 
-<template>    
+<template> 
+  <img alt="Logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div><SignIn msg="User, please sign in !" /></div>   
   <h1>{{ msg }}</h1> 
   <p> 
     Please login if you have an account or register : 
