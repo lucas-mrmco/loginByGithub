@@ -9,7 +9,8 @@ import { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/Supaba
   <p> 
     Please login if you have an account or register : 
   </p> 
-  <button @click="login()">Sign In</button><br> 
+  <button @click="login()">Sign In with Google</button><br> 
+  <button @click="loginGithub()">Sign In with Github</button><br> 
   <button @click="logout()">Sign Out</button><br> 
   <label id="status">You are not yet logged !  </label> 
 </template>
@@ -47,6 +48,16 @@ async login(){
       try { 
         const { user, session, error } = await supabase.auth.signIn({ 
           provider: 'google', 
+        }); 
+        if (error) throw error; 
+      } catch (error) { 
+        alert(error.error_description || error.message); 
+      }  
+    },
+async loginGithub(){ 
+      try { 
+        const { user, session, error } = await supabase.auth.signIn({ 
+          provider: 'github', 
         }); 
         if (error) throw error; 
       } catch (error) { 
