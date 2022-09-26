@@ -5,14 +5,13 @@ import { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/Supaba
 </script>
 
 <template> 
+  
   <img alt="Logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
   <div><SignIn msg="User, please sign in !" /></div>   
-  <h1>{{ msg }}</h1> 
   <p> 
     Please login if you have an account or register : 
   </p> 
-  <button @click="login()">Sign In with Google</button><br> 
-  <button @click="loginGithub()">Sign In with Github</button><br> 
+  <button @click="login()">Sign In with Github</button><br> 
   <button @click="logout()">Sign Out</button><br> 
   <label id="status">You are not yet logged !  </label> 
 </template>
@@ -28,7 +27,7 @@ supabase.auth.onAuthStateChange((event, session) => {
     document.getElementById('status').innerHTML='You are not logged !!!'; 
   } else{ 
     //alert('session value: ' + JSON.stringify(session)) 
-    document.getElementById('status').innerHTML='You are logged with the email: ' + session.user.email; 
+    document.getElementById('status').innerHTML='You are logged with the email: ' ; 
   } 
 })
 
@@ -47,16 +46,6 @@ async logout(){
     //this method allows to log in the system using Google provider 
      
 async login(){ 
-      try { 
-        const { user, session, error } = await supabase.auth.signIn({ 
-          provider: 'google', 
-        }); 
-        if (error) throw error; 
-      } catch (error) { 
-        alert(error.error_description || error.message); 
-      }  
-    },
-async loginGithub(){ 
       try { 
         const { user, session, error } = await supabase.auth.signIn({ 
           provider: 'github', 
